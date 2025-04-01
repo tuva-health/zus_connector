@@ -1,4 +1,6 @@
-This is a template to create connectors for The Tuva Project on version `0.14.x`
+This is a template to create connectors for The Tuva Project on version `0.14.x`. 
+
+This template includes a general project structure for connectors for The Tuva Project, including the data models that The Tuva Project Package expects as inputs, some data tests and column-level documentation, and some notes on how to build on this connector in structuring your own projects.
 
 ### What is a connector?
 Running a correctly-built connector prepares data to run through The Tuva Project dbt package. In effect, connectors help map raw data sources to the Tuva Data Model.
