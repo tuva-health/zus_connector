@@ -11,6 +11,12 @@ As a general pattern, connectors are roughly 1:1 with raw data sources, because 
 * `int` layer: handle any consequential transformations, including Adjustments, Denials, and Reversals (ADR) for claims and deduplication.
 * `final` layer: data is ready to run through The Tuva Project—the models in this layer are expected by The Tuva Project Package.
 
+### Running a connector
+When you've completed mapping, and you're ready to run the connector without running the whole Tuva Project, you can build and test all models by running:
+```console
+dbt build --full-refresh -s tag:input_layer
+```
+
 ### Tuva Resources:
 - The Tuva Project [docs](https://thetuvaproject.com/)
 - The Tuva Project [dbt docs](https://tuva-health.github.io/tuva/#!/overview/)
