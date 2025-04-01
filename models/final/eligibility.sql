@@ -30,4 +30,5 @@ select
     , cast(null as {{ dbt.type_string() }}) as file_name
     , cast(null as {{ dbt.type_string() }}) as file_date
     , cast(null as {{ dbt.type_string() }}) as ingest_datetime
+  limit 0
 

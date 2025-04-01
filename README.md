@@ -1,5 +1,14 @@
 This is a template to create connectors for The Tuva Project on version `0.14.x`
 
+### What is a connector?
+Running a correctly-built connector prepares data to run through The Tuva Project dbt package. In effect, connectors help map raw data sources to the Tuva Data Model.
+
+### Connector Project Structure
+As a general pattern, connectors are roughly 1:1 with raw data sources, because each raw data source often has its own unique challenges. The typical workflow and project structure for mapping raw data to the Tuva Data Model within a connector is:
+* `staging` layer: `source()` raw data and map it to the Tuva Data Model
+* `int` layer: handle any consequential transformations, including Adjustments, Denials, and Reversals (ADR) for claims and deduplication.
+* `final` layer: data is ready to run through The Tuva Project—the models in this layer are expected by The Tuva Project Package.
+
 ### Tuva Resources:
 - The Tuva Project [docs](https://thetuvaproject.com/)
 - The Tuva Project [dbt docs](https://tuva-health.github.io/tuva/#!/overview/)

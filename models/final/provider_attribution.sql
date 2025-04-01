@@ -12,4 +12,4 @@ select
     , cast(null as {{ dbt.type_string() }}) as custom_attributed_provider_practice
     , cast(null as {{ dbt.type_string() }}) as custom_attributed_provider_organization
     , cast(null as {{ dbt.type_string() }}) as custom_attributed_provider_lob
-
+limit 0
