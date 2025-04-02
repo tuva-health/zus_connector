@@ -1,4 +1,4 @@
-select
+select {% if target.type == 'fabric' %} top 0 {% else %}{% endif %}
       cast(null as {{ dbt.type_string() }}) as claim_id
     , cast(null as {{ dbt.type_string() }}) as claim_line_number
     , cast(null as {{ dbt.type_string() }}) as claim_type
@@ -71,3 +71,4 @@ select
     , cast(null as {{ dbt.type_string() }}) as file_name
     , cast(null as {{ dbt.type_string() }}) as file_date
     , cast(null as {{ dbt.type_string() }}) as ingest_datetime
+{% if target.type == 'fabric' %} {% else %} limit 0 {% endif %}

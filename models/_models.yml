@@ -15,7 +15,11 @@ models:
       which are needed to calculate measures like PMPM.
     columns:
       - name: person_id
+        tests:
+          - not_null
       - name: member_id
+        tests:
+          - not_null
       - name: subscriber_id
       - name: gender
       - name: race
@@ -23,7 +27,15 @@ models:
       - name: death_date
       - name: death_flag
       - name: enrollment_start_date
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: enrollment_end_date
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: payer
       - name: payer_type
       - name: plan
@@ -70,6 +82,9 @@ models:
       schema: input_layer
       tags: input_layer
       materialized: table
+    tests: 
+      - unique:
+          column_name: "(claim_id || '-' || claim_line_number)"
     description: > 
       The medical_claim table contains information on healthcare services and 
       supplies provided to patients, billed by providers, and paid for by health 
@@ -79,9 +94,13 @@ models:
     columns:
       - name: claim_id
         description: '{{ doc("claim_id") }}'
+        tests:
+          - not_null
       - name: claim_line_number
         description: '{{ doc("claim_line_number") }}'
         data_type: integer
+        tests:
+          - not_null
       - name: claim_type
         description: '{{ doc("claim_type") }}'
         meta:
@@ -190,18 +209,53 @@ models:
         description: '{{ doc("paid_date") }}'
       - name: paid_amount
         description: '{{ doc("paid_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: allowed_amount
         description: '{{ doc("allowed_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: charge_amount
         description: '{{ doc("charge_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: coinsurance_amount
         description: '{{ doc("coinsurance_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: copayment_amount
         description: '{{ doc("copayment_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: deductible_amount
         description: '{{ doc("deductible_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: total_cost_amount
         description: '{{ doc("total_cost_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: diagnosis_code_type
         meta:
           terminology: https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__code_type.csv
@@ -654,12 +708,19 @@ models:
       The pharmacy_claim table includes information about retail and specialty 
       drug prescriptions that have been filled by a patient, billed by a 
       pharmacy, and paid by an insurer.
+    tests: 
+      - unique:
+          column_name: "(claim_id || '-' || claim_line_number)"
     columns:
       - name: claim_id
         description: '{{ doc("claim_id") }}'
+        tests:
+          - not_null
       - name: claim_line_number
         description: '{{ doc("claim_line_number") }}'
         data_type: integer
+        tests:
+          - not_null
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: member_id
@@ -685,6 +746,10 @@ models:
         description: '{{ doc("dispensing_date") }}'
       - name: ndc_code
         description: '{{ doc("ndc_code") }}'
+        tests:
+          - not_null:
+              config:
+                severity: warn
         meta:
           terminology: https://www.fda.gov/drugs/drug-approvals-and-databases/national-drug-code-directory
       - name: quantity
@@ -702,14 +767,39 @@ models:
         description: '{{ doc("paid_amount") }}'
       - name: allowed_amount
         description: '{{ doc("allowed_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: charge_amount
         description: '{{ doc("charge_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: coinsurance_amount
         description: '{{ doc("coinsurance_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: copayment_amount
         description: '{{ doc("copayment_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: deductible_amount
         description: '{{ doc("deductible_amount") }}'
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              config:
+                severity: warn
       - name: in_network_flag
         description: '{{ doc("in_network_flag") }}'
       - name: data_source
