@@ -1,0 +1,40 @@
+select
+    id
+    , version
+    , last_updated
+    , status
+    , category
+    , observation_code_id
+    , code_act
+    , code_cpt
+    , code_loinc
+    , code_snomed
+    , code_display
+    , subject_patient_id
+    , encounter_id
+    , effective_start
+    , effective_end
+    , issued
+    , value_range_low
+    , value_range_high
+    , value_period_start
+    , value_period_end
+    , value_integer
+    , value_string
+    , value_quantity_value
+    , value_quantity_unit
+    , observation_value_concept_id
+    , data_absent_reason
+    , observation_interpretation_id
+    , body_site_concept_id
+    , observation_method_id
+    , reference_range_low
+    , reference_range_high
+    , reference_range_unit
+    , reference_range_display
+    , builder_id
+    , upid
+    , created_at
+    , resource_json
+    , data_source
+from {{ source('zus_raw', 'observation') }}

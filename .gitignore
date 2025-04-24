@@ -25,3 +25,4 @@ release_notes/
 __pycache__/
 .envrc
 .python-version
+venv
