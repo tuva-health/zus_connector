@@ -6,14 +6,6 @@ The lab order number from the source system.
 The street address of the record (e.g., facility location, patient, etc).
 {% enddocs %}
 
-{% docs admission_date %}
-Admission date for the claim (inpatient claims only).
-{% enddocs %}
-
-{% docs admit_age %}
-The age of the patient at the time of admission.
-{% enddocs %}
-
 {% docs admit_source_code %}
 Indicates where the patient was before the healthcare encounter (inpatient claims only).
 {% enddocs %}
@@ -30,28 +22,8 @@ Indicates the type of admission (inpatient claims only).
 Description of the admit_type_code for the encounter.
 {% enddocs %}
 
-{% docs age %}
-The age of the patient calculated based on their date of birth and the last time the tuva project was run.
-{% enddocs %}
-
-{% docs age_group %}
-The decade age group the patient falls into based on their calculated age.
-{% enddocs %}
-
 {% docs allowed_amount %}
 The total amount allowed (includes amount paid by the insurer and patient).
-{% enddocs %}
-
-{% docs ambulance_flag %}
-Indicates whether ambulance services were utilized during the encounter (1 for yes, 0 for no).
-{% enddocs %}
-
-{% docs apr_drg_code %}
-APR-DRG for the claim (inpatient claims only).
-{% enddocs %}
-
-{% docs apr_drg_description %}
-Description of the APR-DRG code.
 {% enddocs %}
 
 {% docs atc_code %}
@@ -62,10 +34,6 @@ ATC code for the medication.
 Description for the ATC code.
 {% enddocs %}
 
-{% docs atc_mapping_method %}
-mapping method used to populate the normalized codes and descriptions.  Can be manual (fields were populated in input layer), automatic (dictionary codes matching the source code were found and was automatically populated) or custom (populated by normalization engine)
-{% enddocs %}
-
 {% docs attending_provider_id %}
 ID for the attending provider on the encounter.
 {% enddocs %}
@@ -74,36 +42,8 @@ ID for the attending provider on the encounter.
 Name of the attending provider on the encounter.
 {% enddocs %}
 
-{% docs bill_type_code %}
-Bill type code for the claim (institutional claims only).
-{% enddocs %}
-
-{% docs bill_type_description %}
-Bill type description.
-{% enddocs %}
-
-{% docs billing_id %}
-Billing ID for the claim (typically represents organization billing the claim).
-{% enddocs %}
-
-{% docs billing_name %}
-Billing provider name.
-{% enddocs %}
-
-{% docs billing_tin %}
-Billing provider tax identification number (TIN).
-{% enddocs %}
-
 {% docs birth_date %}
 The birth date of the patient.
-{% enddocs %}
-
-{% docs ccs_category %}
-The Clinical Classifications Software (CCS) category code for the diagnosis or procedure.
-{% enddocs %}
-
-{% docs ccs_category_description %}
-Description of the Clinical Classifications Software (CCS) category.
 {% enddocs %}
 
 {% docs charge_amount %}
@@ -114,56 +54,8 @@ The total amount charged for the services provided, before any adjustments or pa
 The city of the record (e.g., facility location, patient, etc).
 {% enddocs %}
 
-{% docs claim_attribution_number %}
-A unique number used for attributing or associating claims with specific entities or processes.
-{% enddocs %}
-
-{% docs claim_count %}
-The number of claims associated with the encounter or record.
-{% enddocs %}
-
-{% docs claim_end_date %}
-End date for the claim.
-{% enddocs %}
-
 {% docs claim_id %}
 Unique identifier for a claim. Each claim represents a distinct healthcare service or set of services provided to a patient.
-{% enddocs %}
-
-{% docs claim_line_attribution_number %}
-A unique number used for attributing or associating specific claim lines with entities or processes.
-{% enddocs %}
-
-{% docs claim_line_end_date %}
-End date for the claim line.
-{% enddocs %}
-
-{% docs claim_line_id %}
-Unique identifier for each line item within a claim.
-{% enddocs %}
-
-{% docs claim_line_number %}
-Indicates the line number for the particular line of the claim.
-{% enddocs %}
-
-{% docs claim_line_start_date %}
-Start date for the claim line.
-{% enddocs %}
-
-{% docs claim_start_date %}
-The date when the healthcare service was provided. Format: YYYY-MM-DD.
-{% enddocs %}
-
-{% docs claim_type %}
-Indicates whether the claim is professional (CMS-1500), institutional (UB-04), dental, or vision.
-{% enddocs %}
-
-{% docs close_flag %}
-A flag indicating if the claim has been closed.
-{% enddocs %}
-
-{% docs coinsurance_amount %}
-The total coinsurance charged on the claim by the provider.
 {% enddocs %}
 
 {% docs collection_date %}
@@ -182,28 +74,8 @@ The numerical ranking of a diagnosis code in a claim.  Principle  diagnosis code
 The type of condition i.e. problem, admitting, or billing.
 {% enddocs %}
 
-{% docs copayment_amount %}
-The total copayment charged on the claim by the provider.
-{% enddocs %}
-
 {% docs county %}
 The county for the patient.
-{% enddocs %}
-
-{% docs custom_attributed_provider %}
-Unique identifier for the provider assigned to this patient-year_month by the user.
-{% enddocs %}
-
-{% docs custom_attributed_provider_practice %}
-Name of the practice for the attributed provider assigned by the user.
-{% enddocs %}
-
-{% docs custom_attributed_provider_organization %}
-Name of the organization for the attributed provider assigned by the user.
-{% enddocs %}
-
-{% docs custom_attributed_provider_lob %}
-Name of the line of business for the attributed provider assigned by the user (e.g. medicare, medicaid, commercial).
 {% enddocs %}
 
 {% docs data_source %}
@@ -222,42 +94,6 @@ Date the patient died if there is one.
 A flag indicating if the patient has died.
 {% enddocs %}
 
-{% docs deductible_amount %}
-The total amount charged on the claim by the provider.
-{% enddocs %}
-
-{% docs default_ccsr_category_description_ip %}
-Description of the default Clinical Classifications Software Refined (CCSR) category for inpatient services.
-{% enddocs %}
-
-{% docs default_ccsr_category_description_op %}
-Description of the default Clinical Classifications Software Refined (CCSR) category for outpatient services.
-{% enddocs %}
-
-{% docs default_ccsr_category_ip %}
-The default Clinical Classifications Software Refined (CCSR) category code for inpatient services.
-{% enddocs %}
-
-{% docs default_ccsr_category_op %}
-The default Clinical Classifications Software Refined (CCSR) category code for outpatient services.
-{% enddocs %}
-
-{% docs delivery_flag %}
-Indicates whether the encounter involved a delivery (1 for yes, 0 for no).
-{% enddocs %}
-
-{% docs delivery_type %}
-Type of delivery that occurred during the encounter, if applicable.
-{% enddocs %}
-
-{% docs diagnosis_code_1 %}
-The primary diagnosis code for the encounter or claim.
-{% enddocs %}
-
-{% docs diagnosis_code_type %}
-The coding system used for the diagnosis code (e.g., ICD-10-CM, ICD-9-CM).
-{% enddocs %}
-
 {% docs discharge_date %}
 Discharge date for the claim (inpatient claims only).
 {% enddocs %}
@@ -274,28 +110,8 @@ Description of the discharge_disposition_code for the encounter.
 Date the medication was dispensed.
 {% enddocs %}
 
-{% docs dispensing_provider_id %}
-ID for the provider that dispensed the prescription (e.g. pharmacy).
-{% enddocs %}
-
-{% docs dispensing_provider_name %}
-Dispensing provider name.
-{% enddocs %}
-
-{% docs distinct_claims %}
-The number of distinct claims associated with the record.
-{% enddocs %}
-
-{% docs distinct_service_category_count %}
-The count of distinct service categories associated with the claim.
-{% enddocs %}
-
 {% docs dme_flag %}
 Indicates whether durable medical equipment (DME) was used during the encounter (1 for yes, 0 for no).
-{% enddocs %}
-
-{% docs dq_problem %}
-A flag or description indicating a data quality issue.
 {% enddocs %}
 
 {% docs drg_code_type %}
@@ -310,44 +126,12 @@ The DRG code on the claim.
 The description for the DRG code used on the claim.
 {% enddocs %}
 
-{% docs dual_status_code %}
-Indicates whether the patient is dually eligible for Medicare and Medicaid.
-{% enddocs %}
-
-{% docs duplicate_row_number %}
-A number assigned to duplicate rows for identification purposes.
-{% enddocs %}
-
-{% docs ed_flag %}
-Indicates whether the encounter involved an emergency department visit (1 for yes, 0 for no).
-{% enddocs %}
-
-{% docs eligibility_id %}
-Unique identifier for each eligibility row in the table.
-{% enddocs %}
-
-{% docs encounter_claim_number %}
-A unique identifier for the encounter or claim.
-{% enddocs %}
-
-{% docs encounter_claim_number_desc %}
-A description or additional information about the encounter claim number.
-{% enddocs %}
-
 {% docs encounter_end_date %}
 Date when the encounter ended.
 {% enddocs %}
 
-{% docs encounter_group %}
-Categorization of the encounter into groups based on predefined criteria.
-{% enddocs %}
-
 {% docs encounter_id %}
 Unique identifier for each encounter in the dataset.
-{% enddocs %}
-
-{% docs encounter_source_type %}
-Indicates whether the encounter is from a claims or clinical data source
 {% enddocs %}
 
 {% docs encounter_start_date %}
@@ -356,22 +140,6 @@ Date when the encounter started.
 
 {% docs encounter_type %}
 Indicates the type of encounter e.g. acute inpatient, emergency department, etc.
-{% enddocs %}
-
-{% docs end_date %}
-The end date of the service or claim period.
-{% enddocs %}
-
-{% docs enrollment_end_date %}
-Date the patient's insurance eligibility ended.
-{% enddocs %}
-
-{% docs enrollment_flag %}
-Flag indicating if the claim has corresponding enrollment during the same time period the service occurred.
-{% enddocs %}
-
-{% docs enrollment_start_date %}
-Date the patient's insurance eligibility began.
 {% enddocs %}
 
 {% docs facility_id %}
@@ -384,10 +152,6 @@ Facility name.
 
 {% docs facility_npi %}
 Facility NPI for the claim (typically represents the facility where services were performed).
-{% enddocs %}
-
-{% docs file_date %}
-The date associated with the claims file, typically reflecting the reporting period of the claims data.
 {% enddocs %}
 
 {% docs file_name %}
@@ -404,14 +168,6 @@ The first name of the patient.
 
 {% docs gender %}
 The gender of the patient.
-{% enddocs %}
-
-{% docs group_id %}
-The group id which multiple members are enrolled for health coverage.
-{% enddocs %}
-
-{% docs group_name %}
-The group name under which multiple members are enrolled for health coverage.
 {% enddocs %}
 
 {% docs hcpcs_code %}
@@ -438,36 +194,8 @@ The CPT or HCPCS code representing the procedure or service provided. These code
 5th modifier for HCPCS code.
 {% enddocs %}
 
-{% docs in_network_flag %}
-Flag indicating if the claim was in or out of network.
-{% enddocs %}
-
 {% docs ingest_datetime %}
 The date and time the source file was ingested into the data warehouse or landed in cloud storage.
-{% enddocs %}
-
-{% docs inferred_claim_end_column_used %}
-The column used to infer the claim end date.
-{% enddocs %}
-
-{% docs inferred_claim_end_year_month %}
-The inferred year and month of the claim end date.
-{% enddocs %}
-
-{% docs inferred_claim_start_column_used %}
-The column used to infer the claim start date.
-{% enddocs %}
-
-{% docs inferred_claim_start_year_month %}
-The inferred year and month of the claim start date.
-{% enddocs %}
-
-{% docs inst_claim_count %}
-Number of institutional claims generated from the encounter.
-{% enddocs %}
-
-{% docs lab_flag %}
-Indicates whether lab services were utilized during the encounter (1 for yes, 0 for no).
 {% enddocs %}
 
 {% docs lab_result_id %}
@@ -494,40 +222,8 @@ Unique identifier for each location.
 The longitude of the record (e.g., facility location, patient, etc).
 {% enddocs %}
 
-{% docs mapping_method %}
-mapping method used to populate the normalized codes and descriptions.  Can be manual (fields were populated in input layer), automatic (dictionary codes matching the source code were found and was automatically populated) or custom (populated by normalization engine)
-{% enddocs %}
-
-{% docs medical_claim_id %}
-Unique identifier for each row in the table.
-{% enddocs %}
-
-{% docs medical_surgical %}
-A flag or code indicating if the service was medical or surgical.
-{% enddocs %}
-
-{% docs medicare_status_code %}
-Indicates how the patient became eligible for Medicare.
-{% enddocs %}
-
 {% docs medication_id %}
 Unique identifier for each medication in the table.
-{% enddocs %}
-
-{% docs member_id %}
-Identifier that links a patient to a particular insurance product or health plan. A patient can have more than one member_id because they can have more than one insurance product/plan.
-{% enddocs %}
-
-{% docs member_month_key %}
-The unique combination of person_id, year_month, payer, plan, and data source.
-{% enddocs %}
-
-{% docs min_closing_row %}
-The minimum row number for closing entries in the dataset.
-{% enddocs %}
-
-{% docs modality %}
-The mode or method of treatment or service delivery.
 {% enddocs %}
 
 {% docs modifier_1 %}
@@ -550,18 +246,6 @@ Fourth modifier for the procedure code.
 Fifth modifier for the procedure code.
 {% enddocs %}
 
-{% docs mortality_flag %}
-A flag indicating if the patient died during the encounter.
-{% enddocs %}
-
-{% docs ms_drg_code %}
-MS-DRG for the claim (inpatient claims only).
-{% enddocs %}
-
-{% docs ms_drg_description %}
-Description of the ms_drg_code.
-{% enddocs %}
-
 {% docs name %}
 The name of the location.
 {% enddocs %}
@@ -572,18 +256,6 @@ National drug code associated with the medication.
 
 {% docs ndc_description %}
 Description for the NDC.
-{% enddocs %}
-
-{% docs ndc_mapping_method %}
-mapping method used to populate the normalized codes and descriptions.  Can be manual (fields were populated in input layer), automatic (dictionary codes matching the source code were found and was automatically populated) or custom (populated by normalization engine)
-{% enddocs %}
-
-{% docs newborn_flag %}
-Indicates whether the encounter was for a newborn (1 for yes, 0 for no).
-{% enddocs %}
-
-{% docs nicu_flag %}
-Indicates whether the newborn was admitted to the Neonatal Intensive Care Unit (NICU) during the encounter (1 for yes, 0 for no).
 {% enddocs %}
 
 {% docs normalized_abnormal_flag %}
@@ -626,20 +298,12 @@ The national provider identifier associated with the record e.g. facility_npi, p
 Date the observation was recorded.
 {% enddocs %}
 
-{% docs observation_flag %}
-Indicates whether the encounter was marked as an observation stay (1 for yes, 0 for no).
-{% enddocs %}
-
 {% docs observation_id %}
 Unique identifier for each observation in the dataset.
 {% enddocs %}
 
 {% docs observation_type %}
 Type of observation.
-{% enddocs %}
-
-{% docs old_encounter_id %}
-A previous or alternative identifier for the encounter.
 {% enddocs %}
 
 {% docs onset_date %}
@@ -650,24 +314,8 @@ Date when the condition first occurred.
 Unique identifier for the practitioner who ordered the lab test.
 {% enddocs %}
 
-{% docs original_reason_entitlement_code %}
-Original reason for Medicare entitlement code.
-{% enddocs %}
-
-{% docs original_service_cat_2 %}
-The original second-level service category.
-{% enddocs %}
-
-{% docs original_service_cat_3 %}
-The original third-level service category.
-{% enddocs %}
-
 {% docs paid_amount %}
 The total amount paid by the insurer.
-{% enddocs %}
-
-{% docs paid_date %}
-The date the claim was paid.
 {% enddocs %}
 
 {% docs panel_id %}
@@ -678,52 +326,16 @@ Unique identifier for the panel.
 The parent organization associated with the facility.
 {% enddocs %}
 
-{% docs patient_data_source_id %}
-Identifier for the source system from which patient data originated.
-{% enddocs %}
-
 {% docs patient_id %}
 Identifier that links a patient to a particular clinical source system.
-{% enddocs %}
-
-{% docs patient_row_num %}
-A row number assigned to the patient's records.
 {% enddocs %}
 
 {% docs payer %}
 Name of the payer (i.e. health insurer) providing coverage.
 {% enddocs %}
 
-{% docs payer_attributed_provider %}
-Unique identifier for the provider assigned to this patient-year_month by the payer.
-{% enddocs %}
-
-{% docs payer_attributed_provider_practice %}
-Name of the practice for the payer attributed provider.
-{% enddocs %}
-
-{% docs payer_attributed_provider_organization %}
-Name of the organization for the payer attributed provider.
-{% enddocs %}
-
-{% docs payer_attributed_provider_lob %}
-Name of the line of business for the payer attributed provider (e.g. medicare, medicaid, commercial).
-{% enddocs %}
-
-{% docs payer_type %}
-Type of payer (e.g. commercial, medicare, medicaid, etc.).
-{% enddocs %}
-
 {% docs person_id %}
 Unique identifier for each person in the dataset.
-{% enddocs %}
-
-{% docs pharmacy_claim_id %}
-Unique identifier for each row in the table.
-{% enddocs %}
-
-{% docs pharmacy_flag %}
-Indicates whether pharmacy services were utilized during the encounter (1 for yes, 0 for no).
 {% enddocs %}
 
 {% docs phone %}
@@ -790,24 +402,12 @@ Description of the primary medical specialty of the provider.
 The primary taxonomy code identifying the provider's specialty, classification, or area of practice.
 {% enddocs %}
 
-{% docs priority %}
-The priority or urgency level of the service or claim.
-{% enddocs %}
-
-{% docs priority_number %}
-A number indicating the priority or sequence of the service or claim.
-{% enddocs %}
-
 {% docs procedure_date %}
 Date when the procedure was performed.
 {% enddocs %}
 
 {% docs procedure_id %}
 The unique identifier for the performed procedure.
-{% enddocs %}
-
-{% docs prof_claim_count %}
-Number of professional claims generated from the encounter.
 {% enddocs %}
 
 {% docs provider_first_name %}
@@ -846,26 +446,6 @@ Date when the condition was recorded.
 Number of refills for the prescription.
 {% enddocs %}
 
-{% docs relative_rank %}
-A ranking or order of importance for the record.
-{% enddocs %}
-
-{% docs rend_primary_specialty_description %}
-A description of the rendering provider's primary specialty.
-{% enddocs %}
-
-{% docs rendering_id %}
-Rendering ID for the claim (typically represents the physician or entity providing services).
-{% enddocs %}
-
-{% docs rendering_name %}
-Rendering provider name.
-{% enddocs %}
-
-{% docs rendering_tin %}
-Rendering provider tax identification number (TIN).
-{% enddocs %}
-
 {% docs resolved_date %}
 Date when the condition was resolved.
 {% enddocs %}
@@ -876,14 +456,6 @@ The result of the record (e.g., lab test, observation, etc).
 
 {% docs result_date %}
 Date of the test result.
-{% enddocs %}
-
-{% docs revenue_center_code %}
-Revenue center code for the claim line (institutional only and typically multiple codes per claim).
-{% enddocs %}
-
-{% docs revenue_center_description %}
-Revenue center description.
 {% enddocs %}
 
 {% docs route %}
@@ -900,26 +472,6 @@ Description for the RxNorm code.
 
 {% docs rxnorm_mapping_method %}
 mapping method used to populate the normalized codes and descriptions.  Can be manual (fields were populated in input layer), automatic (dictionary codes matching the source code were found and was automatically populated) or custom (populated by normalization engine)
-{% enddocs %}
-
-{% docs service_category_1 %}
-The broader service category this claim belongs to.
-{% enddocs %}
-
-{% docs service_category_2 %}
-The more specific service category this claim belongs to.
-{% enddocs %}
-
-{% docs service_category_3 %}
-The most specific service category this claim belongs to.
-{% enddocs %}
-
-{% docs service_type %}
-The type of service provided.
-{% enddocs %}
-
-{% docs service_unit_quantity %}
-The number of units for the particular revenue center code.
 {% enddocs %}
 
 {% docs sex %}
@@ -950,14 +502,6 @@ The description for the component of the test from the source system.
 Description of the source code in the source system.
 {% enddocs %}
 
-{% docs source_model %}
-Indicates the DBT source relation name from which data is derived.
-{% enddocs %}
-
-{% docs source_model_name %}
-The name of the source data model.
-{% enddocs %}
-
 {% docs source_reference_range_high %}
 The high end of the reference range from the source system.
 {% enddocs %}
@@ -978,10 +522,6 @@ Specialty of the provider.
 The type of specimen e.g. blood, plasma, urine.
 {% enddocs %}
 
-{% docs start_date %}
-The start date of the service or claim period.
-{% enddocs %}
-
 {% docs state %}
 The state of the record (e.g., facility location, patient, etc).
 {% enddocs %}
@@ -996,30 +536,6 @@ The strength of the medication.
 
 {% docs sub_specialty %}
 Sub specialty of the provider.
-{% enddocs %}
-
-{% docs subscriber_id %}
-Identifier that links a patient to a particular insurance product or health plan.
-{% enddocs %}
-
-{% docs subscriber_relation %}
-Identifier that links a patient to a particular insurance product or health plan.
-{% enddocs %}
-
-{% docs total_allowed_amount %}
-The total amount allowed by the insurance company for all services in the claim.
-{% enddocs %}
-
-{% docs total_charge_amount %}
-The total amount charged for all services in the claim.
-{% enddocs %}
-
-{% docs total_cost_amount %}
-The total amount paid on the claim by different parties.
-{% enddocs %}
-
-{% docs total_paid_amount %}
-The total amount paid for all services in the claim.
 {% enddocs %}
 
 {% docs tuva_last_run %}
