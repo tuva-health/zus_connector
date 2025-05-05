@@ -24,5 +24,5 @@ select
     , cast(upid as {{ dbt.type_string() }}) as upid
     , cast(created_at as {{ dbt.type_timestamp() }}) as created_at
     , cast(resource_json as {{ dbt.type_string() }}) as resource_json
-    , cast('Zus' as {{ dbt.type_string() }}) as data_source
+    , cast(data_source as {{ dbt.type_string() }}) as data_source
 from { source('zus_raw', 'condition') }}
