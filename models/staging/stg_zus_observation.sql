@@ -1,40 +1,40 @@
 select
-    id
-    , version
-    , last_updated
-    , status
-    , category
-    , observation_code_id
-    , code_act
-    , code_cpt
-    , code_loinc
-    , code_snomed
-    , code_display
-    , subject_patient_id
-    , encounter_id
-    , effective_start
-    , effective_end
-    , issued
-    , value_range_low
-    , value_range_high
-    , value_period_start
-    , value_period_end
-    , value_integer
-    , value_string
-    , value_quantity_value
-    , value_quantity_unit
-    , observation_value_concept_id
-    , data_absent_reason
-    , observation_interpretation_id
-    , body_site_concept_id
-    , observation_method_id
-    , reference_range_low
-    , reference_range_high
-    , reference_range_unit
-    , reference_range_display
-    , builder_id
-    , upid
-    , created_at
-    , resource_json
-    , data_source
+    cast(id as {{ dbt.type_string() }}) as id
+    , cast(version as {{ dbt.type_int() }}) as version
+    , cast(last_updated as {{ dbt.type_timestamp() }}) as last_updated
+    , cast(status as {{ dbt.type_string() }}) as status
+    , cast(category as {{ dbt.type_string() }}) as category
+    , cast(observation_code_id as {{ dbt.type_string() }}) as observation_code_id
+    , cast(code_act as {{ dbt.type_string() }}) as code_act
+    , cast(code_cpt as {{ dbt.type_string() }}) as code_cpt
+    , cast(code_loinc as {{ dbt.type_string() }}) as code_loinc
+    , cast(code_snomed as {{ dbt.type_string() }}) as code_snomed
+    , cast(code_display as {{ dbt.type_string() }}) as code_display
+    , cast(subject_patient_id as {{ dbt.type_string() }}) as subject_patient_id
+    , cast(encounter_id as {{ dbt.type_string() }}) as encounter_id
+    , cast(effective_start as {{ dbt.type_timestamp() }}) as effective_start
+    , cast(effective_end as {{ dbt.type_timestamp() }}) as effective_end
+    , cast(issued as {{ dbt.type_timestamp() }}) as issued
+    , cast(value_range_low as {{ dbt.type_int() }}) as value_range_low
+    , cast(value_range_high as {{ dbt.type_int() }}) as value_range_high
+    , cast(value_period_start as {{ dbt.type_timestamp() }}) as value_period_start
+    , cast(value_period_end as {{ dbt.type_timestamp() }}) as value_period_end
+    , cast(value_integer as {{ dbt.type_int() }}) as value_integer
+    , cast(value_string as {{ dbt.type_string() }}) as value_string
+    , cast(value_quantity_value as {{ dbt.type_int() }}) as value_quantity_value
+    , cast(value_quantity_unit as {{ dbt.type_string() }}) as value_quantity_unit
+    , cast(observation_value_concept_id as {{ dbt.type_string() }}) as observation_value_concept_id
+    , cast(date_absent_reason as {{ dbt.type_string() }}) as data_absent_reason
+    , cast(observation_interpretation_id as {{ dbt.type_string() }}) as observation_interpretation_id
+    , cast(body_site_concept_id as {{ dbt.type_string() }}) as body_site_concept_id
+    , cast(observation_method_id as {{ dbt.type_string() }}) as observation_method_id
+    , cast(reference_range_low as {{ dbt.type_int() }}) as reference_range_low
+    , cast(reference_range_high as {{ dbt.type_int() }}) as reference_range_high
+    , cast(reference_range_unit as {{ dbt.type_string() }}) as reference_range_unit
+    , cast(reference_range_display as {{ dbt.type_string() }}) as reference_range_display
+    , cast(builder_id as {{ dbt.type_string() }}) as builder_id
+    , cast(upid as {{ dbt.type_string() }}) as upid
+    , cast(created_at as {{ dbt.type_timestamp() }}) as created_at
+    , cast(resource_json as {{ dbt.type_string() }}) as resource_json
+    , cast(data_source as {{ dbt.type_string() }}) as data_source
 from {{ source('zus_raw', 'observation') }}
