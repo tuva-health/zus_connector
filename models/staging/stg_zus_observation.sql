@@ -15,21 +15,21 @@ select
     , cast(effective_start as {{ dbt.type_timestamp() }}) as effective_start
     , cast(effective_end as {{ dbt.type_timestamp() }}) as effective_end
     , cast(issued as {{ dbt.type_timestamp() }}) as issued
-    , cast(value_range_low as {{ dbt.type_int() }}) as value_range_low
-    , cast(value_range_high as {{ dbt.type_int() }}) as value_range_high
+    , cast(value_range_low as {{ dbt.type_numeric() }}) as value_range_low
+    , cast(value_range_high as {{ dbt.type_numeric() }}) as value_range_high
     , cast(value_period_start as {{ dbt.type_timestamp() }}) as value_period_start
     , cast(value_period_end as {{ dbt.type_timestamp() }}) as value_period_end
     , cast(value_integer as {{ dbt.type_int() }}) as value_integer
     , cast(value_string as {{ dbt.type_string() }}) as value_string
-    , cast(value_quantity_value as {{ dbt.type_int() }}) as value_quantity_value
+    , cast(value_quantity_value as {{ dbt.type_numeric() }}) as value_quantity_value
     , cast(value_quantity_unit as {{ dbt.type_string() }}) as value_quantity_unit
     , cast(observation_value_concept_id as {{ dbt.type_string() }}) as observation_value_concept_id
     , cast(date_absent_reason as {{ dbt.type_string() }}) as data_absent_reason
     , cast(observation_interpretation_id as {{ dbt.type_string() }}) as observation_interpretation_id
     , cast(body_site_concept_id as {{ dbt.type_string() }}) as body_site_concept_id
     , cast(observation_method_id as {{ dbt.type_string() }}) as observation_method_id
-    , cast(reference_range_low as {{ dbt.type_int() }}) as reference_range_low
-    , cast(reference_range_high as {{ dbt.type_int() }}) as reference_range_high
+    , cast(reference_range_low as {{ dbt.type_numeric() }}) as reference_range_low
+    , cast(reference_range_high as {{ dbt.type_numeric() }}) as reference_range_high
     , cast(reference_range_unit as {{ dbt.type_string() }}) as reference_range_unit
     , cast(reference_range_display as {{ dbt.type_string() }}) as reference_range_display
     , cast(builder_id as {{ dbt.type_string() }}) as builder_id
