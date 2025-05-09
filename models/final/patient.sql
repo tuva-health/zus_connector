@@ -1,1 +1,1 @@
-select * from {{ ref('in_patient') }}
+select * from {{ ref('int_patient') }}

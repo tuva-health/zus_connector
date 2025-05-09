@@ -8,8 +8,8 @@ select
     , null as sub_specialty
     , tuva_prov.primary_specialty_description as specialty
     , 'zus' as data_source
-    , cast(null as {{ dbt.type_string() }} ) as file_name
-    , cast(null as {{ dbt.type_timestamp() }} ) as ingest_datetime
+    , cast(null as {{ dbt.type_string() }}) as file_name
+    , cast(null as {{ dbt.type_timestamp() }}) as ingest_datetime
 from {{ ref('stg_zus_practitioner') }} as zp
-left join {{ ref('terminology__provider') }} as tuva_prov
+left outer join {{ ref('terminology__provider') }} as tuva_prov
   on zp.identifier_npi = tuva_prov.npi
