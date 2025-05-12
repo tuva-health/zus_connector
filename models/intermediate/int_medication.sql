@@ -31,7 +31,7 @@ with base as (
         on zmd.dosage_id = zd.id
     left outer join {{ ref('stg_zus_route_concept') }} as zrc
         on zd.route_concept_id = zrc.id
-),
+)
 
 select
       cast(medcation_id as {{ dbt.type_string() }}) as medication_id

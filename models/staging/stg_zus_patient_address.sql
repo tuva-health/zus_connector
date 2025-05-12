@@ -16,7 +16,7 @@ with base as (
     ) = 1
 )
 
-final as (
+, final as (
     select
         cast(patient_id as {{ dbt.type_string() }}) as patient_id
         , cast(line_1 as {{ dbt.type_string() }}) as line_1
@@ -26,3 +26,5 @@ final as (
         , cast(postal_code as {{ dbt.type_string() }}) as postal_code
     from base
 )
+
+select * from final

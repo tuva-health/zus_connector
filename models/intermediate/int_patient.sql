@@ -3,7 +3,7 @@ with base as (
         zp.upid as person_id
         , zp.id as patient_id
         , zp.name_given_1 as first_name
-        , zp.name_family as last_name,
+        , zp.name_family as last_name
         , zp.gender as sex
         , zp.race
         , zp.birth_date

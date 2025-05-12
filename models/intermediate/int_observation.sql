@@ -18,8 +18,7 @@ with base as (
         , code_display as source_description
         , null as accession_number
         , status
-        , 
-        , case 
+        , case
             when source_code_type = 'loinc' then code_loinc
             when source_code_type = 'snomed' then code_snomed
             when source_code_type = 'hcpcs level 1' then code_cpt
