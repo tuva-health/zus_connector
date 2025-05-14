@@ -18,7 +18,6 @@ sources:
       - name: encounter
       - name: location_type
       - name: location
-      - name: medication_statement_dosage
       - name: medication_statement
       - name: observation
       - name: patient_address

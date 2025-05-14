@@ -8,7 +8,7 @@ select
     , cast(source_code_type as {{ dbt.type_string() }}) as source_code_type
     , cast(source_code as {{ dbt.type_string() }}) as source_code
     , cast(source_description as {{ dbt.type_string() }}) as source_description
-    , cast(normlized_code_type as {{ dbt.type_string() }}) as normalized_code_type
+    , cast(normalized_code_type as {{ dbt.type_string() }}) as normalized_code_type
     , cast(normalized_code as {{ dbt.type_string() }}) as normalized_code
     , cast(normalized_description as {{ dbt.type_string() }}) as normalized_description
     , cast(modifier_1 as {{ dbt.type_string() }}) as modifier_1

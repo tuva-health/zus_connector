@@ -1,6 +1,6 @@
 with base as (
     select
-        id as location_id
+        zl.id as location_id
         , null as npi
         , name
         , zlt.display as facility_type
@@ -10,8 +10,8 @@ with base as (
         , address_state as state
         , address_postal_code as zip_code
         , null as latitude
-        , null as longitide
-        'zus' as data_source
+        , null as longitude
+        , 'zus' as data_source
     from {{ ref('stg_zus_location') }} as zl
     left outer join {{ ref('stg_zus_location_type') }} as zlt
         on zl.location_type_id = zlt.id

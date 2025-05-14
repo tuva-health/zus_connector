@@ -12,6 +12,8 @@ with base as (
         , zpa.city
         , zpa.state
         , zpa.postal_code as zip_code
+        , deceased_datetime as death_date
+        , deceased = 1 as death_flag
         , null as county
         , null as latitude
         , null as longitude

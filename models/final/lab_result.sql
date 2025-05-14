@@ -1,5 +1,5 @@
 select
-      cast(lab_result_id as {{ dbt.type_string() }}) as lab_result_id
+      cast(observation_id as {{ dbt.type_string() }}) as lab_result_id
     , cast(person_id as {{ dbt.type_string() }}) as person_id
     , cast(patient_id as {{ dbt.type_string() }}) as patient_id
     , cast(encounter_id as {{ dbt.type_string() }}) as encounter_id
@@ -11,7 +11,7 @@ select
     , cast(normalized_code_type as {{ dbt.type_string() }}) as normalized_code_type
     , cast(normalized_code as {{ dbt.type_string() }}) as normalized_code
     , cast(normalized_description as {{ dbt.type_string() }}) as normalized_description
-    , cast(normalized_component as {{ dbt.type_string() }}) as normalized_component
+    , cast(null as {{ dbt.type_string() }}) as normalized_component
     , cast(status as {{ dbt.type_string() }}) as status
     , cast(result as {{ dbt.type_string() }}) as result
     , cast(result_date as date) as result_date

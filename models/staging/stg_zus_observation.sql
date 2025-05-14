@@ -24,7 +24,7 @@ select
     , cast(value_quantity_value as {{ dbt.type_numeric() }}) as value_quantity_value
     , cast(value_quantity_unit as {{ dbt.type_string() }}) as value_quantity_unit
     , cast(observation_value_concept_id as {{ dbt.type_string() }}) as observation_value_concept_id
-    , cast(date_absent_reason as {{ dbt.type_string() }}) as data_absent_reason
+    , cast(data_absent_reason as {{ dbt.type_string() }}) as data_absent_reason
     , cast(observation_interpretation_id as {{ dbt.type_string() }}) as observation_interpretation_id
     , cast(body_site_concept_id as {{ dbt.type_string() }}) as body_site_concept_id
     , cast(observation_method_id as {{ dbt.type_string() }}) as observation_method_id

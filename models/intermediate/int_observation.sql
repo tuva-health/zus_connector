@@ -5,9 +5,9 @@ with base as (
         , subject_patient_id as patient_id
         , encounter_id
         , null as panel_id
-        , {{ try_to_cast_date(effective_start) }} as observation_date
-        , {{ try_to_cast_date(effective_end) }} as collected_date
-        , {{ try_to_cast_date(effective_end) }} as result_date
+        , effective_start as observation_date
+        , effective_end as collection_date
+        , effective_end as result_date
         , category as observation_type
         , case
             when code_loinc is not null then 'loinc'
@@ -72,7 +72,7 @@ select
     , cast(file_name as {{ dbt.type_string() }}) as file_name
     , cast(ingest_datetime as {{ dbt.type_timestamp() }}) as ingest_datetime
     , cast(accession_number as {{ dbt.type_string() }}) as accession_number
-    , cast(source_component as {{ dbt.type_string() }}) as source_component
+    , cast(null as {{ dbt.type_string() }}) as source_component
     , cast(status as {{ dbt.type_string() }}) as status
     , cast(source_abnormal_flag as {{ dbt.type_int() }}) as source_abnormal_flag
     , cast(normalized_abnormal_flag as {{ dbt.type_int() }}) as normalized_abnormal_flag

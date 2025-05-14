@@ -14,12 +14,12 @@ with attending_provider as (
         e.id as encounter_id
         , e.subject_patient_id as patient_id
         , e.upid as person_id
-        , e.display as encounter_type
+        , e.class_display as encounter_type
         , period_start as encounter_start_date
         , period_end as encounter_end_date
         , {{ dbt.datediff(
-            try_to_cast_date(encounter_start_date),
-            try_to_cast_date(encounter_end_date),'day'
+            "encounter_start_date",
+            "encounter_end_date", 'day'
         ) }} as length_of_stay
         , null as admit_source_code
         , null as admit_source_description
@@ -39,9 +39,9 @@ with attending_provider as (
         on e.encounter_hospitalization_discharge_disposition_id = ehddc.encounter_hospitalization_discharge_disposition_id
         and ehddc.system = 'urn:oid:2.16.840.1.113883.4.642.3.259'
     left outer join attending_provider as ap
-        on e.encounter_id = ap.encounter_id
+        on e.id = ap.encounter_id
     left outer join {{ ref('stg_zus_practitioner') }} as zp
-        on ap.individual_practitioner_id = zp.practitioner_id
+        on ap.individual_practitioner_id = zp.id
     left outer join {{ ref('stg_zus_location') }} as zl
         on e.location_id = zl.id
 )
@@ -56,8 +56,8 @@ select
     , cast(length_of_stay as {{ dbt.type_int() }}) as length_of_stay
     , cast(admit_source_code as {{ dbt.type_string() }}) as admit_source_code
     , cast(admit_source_description as {{ dbt.type_string() }}) as admit_source_description
-    , cast(admit_type_code as {{ dbt.type_string() }}) as admit_type_code
-    , cast(admit_type_description as {{ dbt.type_string() }}) as admit_type_description
+    , cast(null as {{ dbt.type_string() }}) as admit_type_code
+    , cast(null as {{ dbt.type_string() }}) as admit_type_description
     , cast(discharge_disposition_code as {{ dbt.type_string() }}) as discharge_disposition_code
     , cast(discharge_disposition_description as {{ dbt.type_string() }}) as discharge_disposition_description
     , cast(attending_provider_id as {{ dbt.type_string() }}) as attending_provider_id
