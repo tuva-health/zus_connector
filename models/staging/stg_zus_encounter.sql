@@ -5,7 +5,7 @@ select
     , cast(status as {{ dbt.type_string() }}) as status
     , cast(class_code as {{ dbt.type_string() }}) as class_code
     , cast(class_display as {{ dbt.type_string() }}) as class_display
-    , cast(encounter_participant_type_id as {{ dbt.type_string() }}) as encounter_type_id
+    , cast(encounter_type_id as {{ dbt.type_string() }}) as encounter_type_id
     , cast(subject_patient_id as {{ dbt.type_string() }}) as subject_patient_id
     , cast(period_start as {{ dbt.type_timestamp() }}) as period_start
     , cast(period_end as {{ dbt.type_timestamp() }}) as period_end

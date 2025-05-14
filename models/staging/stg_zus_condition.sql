@@ -25,4 +25,4 @@ select
     , cast(created_at as {{ dbt.type_timestamp() }}) as created_at
     , cast(resource_json as {{ dbt.type_string() }}) as resource_json
     , cast(data_source as {{ dbt.type_string() }}) as data_source
-from { source('zus_raw', 'condition') }}
+from {{ source('zus_raw', 'condition') }}
