@@ -7,7 +7,7 @@ profile: 'default'
 vars:
   ## The Tuva Project vars
   ### Uncomment the line(s) based on the type of source data.
-  #claims_enabled: true
+  claims_enabled: true # HACK: Only turned on since in v0.18.0 there is a bug where HCC suspecting depends on claims being turned on for cms_hcc__icd_10_cm_mappings
   clinical_enabled: true
   #provider_attribution_enabled: true
 
@@ -26,6 +26,7 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+docs-paths: ["dbt_doc_blocks", "models"]
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -33,16 +34,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   zus_connector:
-    models:
-      staging:
-        +materialized: view
-        +schema: _input_layer
-        +tags: input_layer
-      intermediate:
-        +materialized: table
-        +schema: _input_layer
-        +tags: input_layer
-      final:
-        +materialized: table
-        +schema: input_layer
-        +tags: input_layer
+    staging:
+      +materialized: view
+      +schema: _input_layer
+      +tags: input_layer
+    intermediate:
+      +materialized: table
+      +schema: _input_layer
+      +tags: input_layer
+    final:
+      +materialized: table
+      +schema: input_layer
+      +tags: input_layer

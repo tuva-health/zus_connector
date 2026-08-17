@@ -28,7 +28,11 @@ with base as (
         , null as normalized_code
         , null as normalized_description
         , null as normalized_component
-        , coalesce(value_quantity_value, value_integer, value_string) as result
+        , coalesce(
+              cast(value_quantity_value as {{ dbt.type_string() }})
+            , cast(value_integer as {{ dbt.type_string() }})
+            , cast(value_string as {{ dbt.type_string() }})
+          ) as result
         , value_quantity_unit as source_units
         , reference_range_low as source_reference_range_low
         , reference_range_high as source_reference_range_high

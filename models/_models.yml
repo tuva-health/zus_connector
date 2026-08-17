@@ -739,7 +739,6 @@ models:
             tags: ['tuva_dqi_sev_1', 'dqi']
         - unique:
             tags: ['tuva_dqi_sev_1', 'dqi']
-  - name: stg_zus_medication_statement_dosage
   - name: stg_zus_medication_statement
     columns:
       - name: id
