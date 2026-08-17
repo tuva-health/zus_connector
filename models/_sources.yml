@@ -16,6 +16,7 @@ sources:
       - name: encounter_participant
       - name: encounter_type
       - name: encounter
+      - name: lens_encounter
       - name: location_type
       - name: location
       - name: medication_statement
