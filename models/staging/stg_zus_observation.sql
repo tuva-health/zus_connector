@@ -26,7 +26,11 @@ select
     , cast(observation_value_concept_id as {{ dbt.type_string() }}) as observation_value_concept_id
     , cast(data_absent_reason as {{ dbt.type_string() }}) as data_absent_reason
     , cast(observation_interpretation_id as {{ dbt.type_string() }}) as observation_interpretation_id
+    {%- if var('v2_enabled', false) %}
     , cast(observation_body_site_id as {{ dbt.type_string() }}) as body_site_concept_id
+    {%- else %}
+    , cast(body_site_concept_id as {{ dbt.type_string() }}) as body_site_concept_id
+    {%- endif %}
     , cast(observation_method_id as {{ dbt.type_string() }}) as observation_method_id
     , {{ try_to_cast_numeric('reference_range_low') }} as reference_range_low
     , {{ try_to_cast_numeric('reference_range_high') }} as reference_range_high

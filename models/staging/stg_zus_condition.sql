@@ -8,6 +8,10 @@ select
     , cast(condition_code_id as {{ dbt.type_string() }}) as condition_code_id
     , cast(code_cci as {{ dbt.type_string() }}) as code_cci
     , cast(code_ccs as {{ dbt.type_string() }}) as code_ccs
+    {%- if not var('v2_enabled', false) %}
+    {#- code_hcc only exists in the v1 relational schema #}
+    , cast(code_hcc as {{ dbt.type_string() }}) as code_hcc
+    {%- endif %}
     , cast(code_icd10cm as {{ dbt.type_string() }}) as code_icd10cm
     , cast(code_snomed as {{ dbt.type_string() }}) as code_snomed
     , cast(code_display as {{ dbt.type_string() }}) as code_display

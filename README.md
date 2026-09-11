@@ -95,6 +95,25 @@ dbt debug
 
 Look for "Connection test: OK connection ok". If you see errors, double-check your profiles.yml settings (account, user, role, warehouse, authentication details, paths).
 
+### **Step 8: Select Your Zus Schema Version**
+
+This connector supports both the v1 and v2 Zus relational schemas. The `v2_enabled` var in `dbt_project.yml`
+controls which one the models read from, and defaults to `false` (v1):
+
+```yaml
+vars:
+  v2_enabled: false
+```
+
+Set it to `true` if your Zus FHIR Data Marts are on the v2 relational schema, or override it at run time:
+
+```bash
+dbt build --vars '{v2_enabled: true}'
+```
+
+This switches the source schema (`relational_v1` vs. `relational_v2_secure`) and the handful of columns that were
+renamed or dropped between the two versions.
+
 ## Running the Project
 Once setup is complete, you can run the dbt transformations:
 

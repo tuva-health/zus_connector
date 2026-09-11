@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: zus_raw
     database: fhir
-    schema: relational_v2_secure
+    schema: "{{ 'relational_v2_secure' if var('v2_enabled', false) else 'relational_v1' }}"
     tables:
       - name: condition
       - name: condition_category
