@@ -14,7 +14,7 @@ select
     , cast(performed_start as {{ dbt.type_timestamp() }}) as performed_start
     , cast(performed_end as {{ dbt.type_timestamp() }}) as performed_end
     , cast(location_id as {{ dbt.type_string() }}) as location_id
-    , cast(body_site_concept_id as {{ dbt.type_string() }}) as body_site_concept_id
+    , cast(procedure_body_site_id as {{ dbt.type_string() }}) as body_site_concept_id
     , cast(builder_id as {{ dbt.type_string() }}) as builder_id
     , cast(upid as {{ dbt.type_string() }}) as upid
     , cast(created_at as {{ dbt.type_timestamp() }}) as created_at
