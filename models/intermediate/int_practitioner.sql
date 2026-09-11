@@ -11,5 +11,5 @@ select
     , cast(null as {{ dbt.type_string() }}) as file_name
     , cast(null as {{ dbt.type_timestamp() }}) as ingest_datetime
 from {{ ref('stg_zus_practitioner') }} as zp
-left outer join {{ ref('terminology__provider') }} as tuva_prov
+left outer join {{ ref('provider_data__provider') }} as tuva_prov
   on zp.identifier_npi = tuva_prov.npi

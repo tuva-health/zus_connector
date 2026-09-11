@@ -24,11 +24,23 @@ with base as (
             when source_code_type = 'hcpcs level 1' then code_cpt
             when source_code_type = 'actcode' then code_act
         end as source_code
-        , null as normalized_code_type
-        , null as normalized_code
+        , case
+            when source_code_type = 'hcpcs level 1' then 'hcpcs'
+            when source_code_type = 'snomed' then 'snomed-ct'
+            when source_code_type = 'loinc' then 'loinc'
+        end as normalized_code_type
+      , case
+            when source_code_type = 'hcpcs level 1' then code_cpt
+            when source_code_type = 'snomed' then code_snomed
+            when source_code_type = 'loinc' then code_loinc
+        end as normalized_code
         , null as normalized_description
         , null as normalized_component
-        , coalesce(value_quantity_value, value_integer, value_string) as result
+        , coalesce(
+              cast(value_quantity_value as {{ dbt.type_string() }})
+            , cast(value_integer as {{ dbt.type_string() }})
+            , cast(value_string as {{ dbt.type_string() }})
+          ) as result
         , value_quantity_unit as source_units
         , reference_range_low as source_reference_range_low
         , reference_range_high as source_reference_range_high

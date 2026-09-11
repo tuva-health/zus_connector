@@ -2,26 +2,27 @@ version: 2
 
 sources:
   - name: zus_raw
-    database: zus
-    schema: raw_data
+    database: fhir
+    schema: "{{ 'relational_v2_secure' if var('v2_enabled', false) else 'relational_v1' }}"
     tables:
       - name: condition
       - name: condition_category
       - name: condition_code
       - name: condition_code_coding
-      - name: dosage
       - name: encounter_diagnosis
       - name: encounter_hospitalization_discharge_disposition_coding
       - name: encounter_participant_type_coding
       - name: encounter_participant
       - name: encounter_type
       - name: encounter
+      - name: lens_encounter
       - name: location_type
       - name: location
       - name: medication_statement
+      - name: medication_statement_dosage 
+      - name: medication_statement_dosage_route
       - name: observation
       - name: patient_address
       - name: patient
       - name: practitioner
       - name: procedure
-      - name: route_concept

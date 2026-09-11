@@ -3,8 +3,13 @@ select
     , cast(version as {{ dbt.type_int() }}) as version
     , cast(last_updated as {{ dbt.type_timestamp() }}) as last_updated
     , cast(status as {{ dbt.type_string() }}) as status
+    {%- if var('v2_enabled', false) %}
+    , cast(medication_statement_medication_code_id as {{ dbt.type_string() }}) as medication_concept_id
+    , cast(medication_statement_dosage_id as {{ dbt.type_string() }}) as dosage_id
+    {%- else %}
     , cast(medication_concept_id as {{ dbt.type_string() }}) as medication_concept_id
     , cast(dosage_id as {{ dbt.type_string() }}) as dosage_id
+    {%- endif %}
     , cast(code_ndc as {{ dbt.type_string() }}) as code_ndc
     , cast(code_rxnorm as {{ dbt.type_string() }}) as code_rxnorm
     , cast(code_display as {{ dbt.type_string() }}) as code_display
