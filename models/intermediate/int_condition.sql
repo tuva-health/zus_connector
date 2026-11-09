@@ -8,32 +8,33 @@ with mapped_data as (
         , zc.onset as onset_date
         , zc.abatement as resolved_date
         , zc.clinical_status as status
+        /*
+        category_loinc is the condition's category (e.g. problem list item), not its diagnosis,
+        so it only feeds condition_type and never the normalized code.
+        */
         , case
             when icd10.icd_10_cm is not null then 'icd-10-cm'
-            when loinc.loinc is not null then 'loinc'
             when snomed.snomed_ct is not null then 'snomed-ct'
             end as normalized_code_type
         , coalesce(
-            replace(icd10.icd_10_cm, '.', '')
-            , loinc.loinc
+            icd10.icd_10_cm
             , snomed.snomed_ct
         ) as normalized_code
         , coalesce(
             icd10.long_description
-            , loinc.long_common_name
             , snomed.description
         ) as normalized_description
         , case
-            when normalized_code in ('75326-9', '55607006') then 'problem'
-            when normalized_code in ('282291009', '29308-4') then 'diagnosis'
-            when normalized_code = '64572001' then 'disease'
+            when loinc.loinc = '75326-9' or zc.code_snomed = '55607006' then 'problem'
+            when loinc.loinc = '29308-4' or zc.code_snomed = '282291009' then 'diagnosis'
+            when zc.code_snomed = '64572001' then 'disease'
           end as condition_type
         , null as condition_rank
     from {{ ref('stg_zus_condition') }} as zc
     left outer join {{ ref('stg_zus_condition_category') }} as zcat
         on zc.condition_category_id = zcat.id
     left outer join {{ ref('terminology__icd_10_cm') }} as icd10
-        on replace('.', '', zc.code_icd10cm) = icd10.icd_10_cm
+        on replace(zc.code_icd10cm, '.', '') = icd10.icd_10_cm
     left outer join {{ ref('terminology__loinc') }} as loinc
         on zc.category_loinc = loinc.loinc
     left outer join {{ ref('terminology__snomed_ct') }} as snomed

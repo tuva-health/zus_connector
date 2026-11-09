@@ -24,3 +24,4 @@ select
     , cast(ingest_datetime as {{ dbt.type_timestamp() }}) as ingest_datetime
 from {{ ref('int_observation') }}
 where observation_type != 'laboratory'
+  or observation_type is null

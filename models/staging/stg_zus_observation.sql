@@ -1,3 +1,10 @@
+with base as (
+    select
+        *
+        , row_number() over (partition by id order by version desc) as row_num
+    from {{ source('zus_raw', 'observation') }}
+)
+
 select
     cast(id as {{ dbt.type_string() }}) as id
     , cast(version as {{ dbt.type_int() }}) as version
@@ -41,4 +48,5 @@ select
     , cast(created_at as {{ dbt.type_timestamp() }}) as created_at
     , cast(resource_json as {{ dbt.type_string() }}) as resource_json
     , cast(data_source as {{ dbt.type_string() }}) as data_source
-from {{ source('zus_raw', 'observation') }}
+from base
+where row_num = 1

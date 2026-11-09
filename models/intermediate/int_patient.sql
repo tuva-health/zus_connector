@@ -45,5 +45,9 @@ select
     , cast(phone as {{ dbt.type_string() }}) as phone
     , cast(data_source as {{ dbt.type_string() }}) as data_source
     , cast(null as {{ dbt.type_string() }}) as file_name
-    , cast(null as {{ dbt.type_timestamp() }}) as ingest_datetime
+    -- Tuva dedups patients by ingest_datetime, so setting it only on rows with a death date makes Tuva prefer those rows
+    , case
+        when death_date is not null then cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }})
+        else cast(null as {{ dbt.type_timestamp() }})
+      end as ingest_datetime
 from base

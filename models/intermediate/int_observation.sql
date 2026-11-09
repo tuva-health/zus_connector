@@ -5,9 +5,13 @@ with base as (
         , subject_patient_id as patient_id
         , encounter_id
         , null as panel_id
-        , effective_start as observation_date
-        , effective_end as collection_date
-        , effective_end as result_date
+        /*
+        effective[x] is the collection time for labs; a single effectiveDateTime lands in
+        effective_start with effective_end null. issued is when the result was released.
+        */
+        , coalesce(effective_start, effective_end) as observation_date
+        , coalesce(effective_start, effective_end) as collection_date
+        , coalesce(issued, effective_end, effective_start) as result_date
         , category as observation_type
         , case
             when code_loinc is not null then 'loinc'
@@ -20,18 +24,18 @@ with base as (
         , status
         , case
             when source_code_type = 'loinc' then code_loinc
-            when source_code_type = 'snomed' then code_snomed
-            when source_code_type = 'hcpcs level 1' then code_cpt
+            when source_code_type = 'snomed-ct' then code_snomed
+            when source_code_type = 'hcpcs' then code_cpt
             when source_code_type = 'actcode' then code_act
         end as source_code
         , case
-            when source_code_type = 'hcpcs level 1' then 'hcpcs'
-            when source_code_type = 'snomed' then 'snomed-ct'
+            when source_code_type = 'hcpcs' then 'hcpcs'
+            when source_code_type = 'snomed-ct' then 'snomed-ct'
             when source_code_type = 'loinc' then 'loinc'
         end as normalized_code_type
       , case
-            when source_code_type = 'hcpcs level 1' then code_cpt
-            when source_code_type = 'snomed' then code_snomed
+            when source_code_type = 'hcpcs' then code_cpt
+            when source_code_type = 'snomed-ct' then code_snomed
             when source_code_type = 'loinc' then code_loinc
         end as normalized_code
         , null as normalized_description
