@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-        zc.id as condition_id
+        zc.id as source_condition_id
         , zc.upid as person_id
         , zc.subject_patient_id as patient_id
         , zc.encounter_id
@@ -10,20 +10,21 @@ with mapped_data as (
         , zc.clinical_status as status
         /*
         category_loinc is the condition's category (e.g. problem list item), not its diagnosis,
-        so it only feeds condition_type and never the normalized code.
+        so it only feeds condition_type and never the source code. A code that resolves in
+        ICD-10-CM is preferred over SNOMED; Tuva normalizes from code_system and source_code.
         */
         , case
             when icd10.icd_10_cm is not null then 'icd-10-cm'
             when snomed.snomed_ct is not null then 'snomed-ct'
-            end as normalized_code_type
-        , coalesce(
-            icd10.icd_10_cm
-            , snomed.snomed_ct
-        ) as normalized_code
-        , coalesce(
-            icd10.long_description
-            , snomed.description
-        ) as normalized_description
+            when zc.code_icd10cm is not null then 'icd-10-cm'
+            when zc.code_snomed is not null then 'snomed-ct'
+            end as code_system
+        , case
+            when icd10.icd_10_cm is not null then zc.code_icd10cm
+            when snomed.snomed_ct is not null then zc.code_snomed
+            else coalesce(zc.code_icd10cm, zc.code_snomed)
+            end as source_code
+        , zc.code_display as source_description
         , case
             when loinc.loinc = '75326-9' or zc.code_snomed = '55607006' then 'problem'
             when loinc.loinc = '29308-4' or zc.code_snomed = '282291009' then 'diagnosis'
@@ -42,25 +43,20 @@ with mapped_data as (
 )
 
 select
-    cast(condition_id as {{ dbt.type_string() }}) as condition_id
+    cast(source_condition_id as {{ dbt.type_string() }}) as source_condition_id
     , cast(patient_id as {{ dbt.type_string() }}) as patient_id
     , cast(person_id as {{ dbt.type_string() }}) as person_id
     , cast(encounter_id as {{ dbt.type_string() }}) as encounter_id
-    , cast(null as {{ dbt.type_string() }}) as claim_id
     , cast(recorded_date as date) as recorded_date
     , cast(onset_date as date) as onset_date
     , cast(resolved_date as date) as resolved_date
     , cast(status as {{ dbt.type_string() }}) as status
     , cast(condition_type as {{ dbt.type_string() }}) as condition_type
-    , cast(null as {{ dbt.type_string() }}) as source_code_type
-    , cast(null as {{ dbt.type_string() }}) as source_code
-    , cast(null as {{ dbt.type_string() }}) as source_description
-    , cast(normalized_code_type as {{ dbt.type_string() }}) as normalized_code_type
-    , cast(normalized_code as {{ dbt.type_string() }}) as normalized_code
-    , cast(normalized_description as {{ dbt.type_string() }}) as normalized_description
+    , cast(code_system as {{ dbt.type_string() }}) as code_system
+    , cast(source_code as {{ dbt.type_string() }}) as source_code
+    , cast(source_description as {{ dbt.type_string() }}) as source_description
     , cast(condition_rank as int) as condition_rank
     , cast(null as {{ dbt.type_string() }}) as present_on_admit_code
-    , cast(null as {{ dbt.type_string() }}) as present_on_admit_description
     , cast('zus' as {{ dbt.type_string() }}) as data_source
     , cast(null as {{ dbt.type_string() }}) as file_name
     , cast(null as {{ dbt.type_timestamp() }}) as ingest_datetime

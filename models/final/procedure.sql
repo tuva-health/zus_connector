@@ -1,16 +1,12 @@
 select
-      cast(procedure_id as {{ dbt.type_string() }}) as procedure_id
+      cast(source_procedure_id as {{ dbt.type_string() }}) as source_procedure_id
     , cast(person_id as {{ dbt.type_string() }}) as person_id
     , cast(patient_id as {{ dbt.type_string() }}) as patient_id
     , cast(encounter_id as {{ dbt.type_string() }}) as encounter_id
-    , cast(claim_id as {{ dbt.type_string() }}) as claim_id
     , cast(procedure_date as date) as procedure_date
-    , cast(source_code_type as {{ dbt.type_string() }}) as source_code_type
+    , cast(code_system as {{ dbt.type_string() }}) as code_system
     , cast(source_code as {{ dbt.type_string() }}) as source_code
     , cast(source_description as {{ dbt.type_string() }}) as source_description
-    , cast(normalized_code_type as {{ dbt.type_string() }}) as normalized_code_type
-    , cast(normalized_code as {{ dbt.type_string() }}) as normalized_code
-    , cast(normalized_description as {{ dbt.type_string() }}) as normalized_description
     , cast(modifier_1 as {{ dbt.type_string() }}) as modifier_1
     , cast(modifier_2 as {{ dbt.type_string() }}) as modifier_2
     , cast(modifier_3 as {{ dbt.type_string() }}) as modifier_3

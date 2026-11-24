@@ -5,3 +5,4 @@ select
     , cast(code as {{ dbt.type_string() }}) as code
     , cast(display as {{ dbt.type_string() }}) as display
 from {{ source('zus_raw', 'encounter_hospitalization_discharge_disposition_coding') }}
+where system = 'urn:oid:2.16.840.1.113883.4.642.3.259'

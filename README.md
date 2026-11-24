@@ -30,7 +30,7 @@ Before you begin, ensure you have the following:
 
 1.  **Access to your data warehouse:** Credentials and network access to your data warehouse instance (e.g. Snowflake, BigQuery).
 2.  **Zus FHIR Data Marts:** Your raw Zus data must be loaded into specific tables within your data warehouse.
-3.  **dbt CLI Installed:** You need dbt (version 1.9 recommended) installed on your machine or environment where you'll run the transformations. See [dbt Installation Guide](https://docs.getdbt.com/docs/installation) for help with installation.
+3.  **dbt CLI Installed:** You need dbt (version 1.10.5 or later, required by The Tuva Project 1.0) installed on your machine or environment where you'll run the transformations. See [dbt Installation Guide](https://docs.getdbt.com/docs/installation) for help with installation.
 4.  **Git:** You need Git installed to clone this project repository.
 5.  **Authentication Details:** These details will be important in connecting to dbt with a `profiles.yml` file.
 

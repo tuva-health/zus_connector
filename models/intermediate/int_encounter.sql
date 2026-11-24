@@ -37,7 +37,6 @@ with attending_provider as (
         on e.encounter_type_id = et.id
     left outer join {{ ref('stg_zus_encounter_hospitalization_discharge_disposition_coding') }} as ehddc
         on e.encounter_hospitalization_discharge_disposition_id = ehddc.encounter_hospitalization_discharge_disposition_id
-        and ehddc.system = 'urn:oid:2.16.840.1.113883.4.642.3.259'
     left outer join attending_provider as ap
         on e.id = ap.encounter_id
     left outer join {{ ref('stg_zus_practitioner') }} as zp
